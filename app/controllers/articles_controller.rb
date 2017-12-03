@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :find_article, only: [:show, :edit, :update, :destroy]
+
   def index
   	@articles = Article.all.order(id: :asc)
   end
@@ -17,15 +19,12 @@ class ArticlesController < ApplicationController
   end
 
   def show
-  	find_article
   end
 
   def edit
-  	find_article
   end
 
   def update
-	  find_article
 	  @article.attributes = article_params
 	  if @article.save
   		redirect_to article_path(@article)
@@ -35,7 +34,6 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    find_article
     @article.destroy
     redirect_to articles_path
   end
