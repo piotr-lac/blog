@@ -1,11 +1,23 @@
 <h1>List Articles</h1>
 
+<%= form_tag articles_path, method: :get do %>
+  <div class="input-group">
+    <%= text_field_tag :q, "", class: "form-control" %>
+    <span class="input-group-btn">
+      <%= submit_tag "Search", class: "btn btn-default" %>
+    </span>
+  </div>
+<% end %>
+
+
 <div class="list-group">
 	<% @articles.each do |article| %>
    <div class="list-group-item">
     <h4 class="list-group-item-heading"><%= article.title %> </h4>
 		  <div class="list-group-item-text"> <%= article.text %> 
-      </div>
+      </div><br>
+      <div class="list-group-item-text"> Tagi : <%= article.tags.join(", ") %> 
+      </div><br>
       <div class="list-group-item-text">
     		<%= link_to 'Show', article_path(article), class: "btn btn-xs btn-primary" %> 
     		<%= link_to 'Edit', edit_article_path(article), class: "btn btn-xs btn-primary" %> 
@@ -14,6 +26,8 @@
     </div>
 	<% end %>
 </div>
+
+
 
 
 <h4> <%= link_to 'New Article', new_article_path %> </h4>
