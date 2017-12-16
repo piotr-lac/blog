@@ -5,8 +5,15 @@
 	<%= @article.title %>
 </p>
 <p>
-	<strong> Tekst: </strong>
-	<%= @article.text %>
+  <strong> Tekst: </strong>
+  <%= @article.text %>
+</p>
+<p>
+	<strong> Tagi: </strong>
+  <% @article.tags.each do |tag| %>
+  <%= tag %>
+	<% end %>
+
 </p>
 
 
