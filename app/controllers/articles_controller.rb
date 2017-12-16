@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @comment = Comment.new(article: @article, commenter: session[:commenter])
+    @comment = Comment.new(commenter: session[:commenter])
   end
 
   def edit
