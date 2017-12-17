@@ -19,6 +19,14 @@
 	<% end %>
 </p>
 
+<button type="button" class="btn btn-primary"> <span class="badge"><%= @article.likes.count %></span></button>
+
+<% if @like.persisted? %>
+   <button type="button" class="btn btn-danger"><%= link_to "Unlike",  article_like_path(@article, @like), method: :delete %></button>
+<% else %>
+  <button type="button" class="btn btn-success"><%= link_to "Like",  article_likes_path(@article), method: :post %></button>
+<% end %>
+
 
 
 <% @article.comments.each do |comment| %>

@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
 
   has_many :articles, foreign_key: :author_id
+  has_many :likes
+  has_many :liked_articles, through: :likes, source: :article
 end

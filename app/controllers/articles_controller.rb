@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 
 
   def index
-  	@articles = Article.all.order(id: :asc)
+  	@articles = Article.includes(:author).order(id: :asc)
      @articles = @articles.where("? = any(tags)", params[:q]) if params[:q].present?
   end
 
@@ -24,6 +24,7 @@ class ArticlesController < ApplicationController
 
   def show
     @comment = Comment.new(commenter: session[:commenter])
+    @like = Like.find_or_initialize_by(article: @article, user: current_user)
   end
 
   def edit

@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
       session[:commenter] = @comment.commenter 
       redirect_to article_path(@comment.article_id)
     else
+      @like = Like.find_or_initialize_by(article: @article, user: current_user)
       render "articles/show"
     end
     
