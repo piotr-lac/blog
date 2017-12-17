@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :find_article, only: [:show, :edit, :update, :destroy]
+  before_action :autorize_article, only: [:edit, :update, :destroy]
+
 
   def index
   	@articles = Article.all.order(id: :asc)
@@ -25,9 +27,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    if @article.author != current_user
-      redirect_to articles_path
-    end
+   
   end
 
   def update
@@ -56,6 +56,13 @@ class ArticlesController < ApplicationController
 
   def find_article
     @article = Article.find(params[:id])
+  end
+
+  def autorize_article
+     if @article.author != current_user
+      redirect_to articles_path
+    end
+
   end
 
 end
