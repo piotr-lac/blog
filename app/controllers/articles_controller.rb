@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :find_article, only: [:show, :edit, :update, :destroy]
-  before_action :autorize_article, only: [:edit, :update, :destroy]
+  before_action :authorize_article, only: [:edit, :update, :destroy]
 
 
   def index
@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-   
+
   end
 
   def update
@@ -45,10 +45,6 @@ class ArticlesController < ApplicationController
     redirect_to articles_path
   end
 
-
-  
-  
-
   private
 
   def article_params
@@ -59,11 +55,8 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
-  def autorize_article
-     if @article.author != current_user
-      redirect_to articles_path, alert: "Wypad!"
-    end
-
+  def authorize_article
+     authorize @article
   end
 
 end
