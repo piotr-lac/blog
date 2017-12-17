@@ -15,6 +15,8 @@
    <div class="list-group-item">
     <h4 class="list-group-item-heading"><%= article.title %> </h4>
 		  <div class="list-group-item-text"> <%= article.text %> 
+      </div>
+      <div class="list-group-item-text"> Autor : <%= article.author.email %> 
       </div><br>
       <div class="list-group-item-text"> Tagi : 
         <% article.tags.each do |tag| %>
@@ -23,8 +25,12 @@
       </div><br>
       <div class="list-group-item-text">
     		<%= link_to 'Show', article_path(article), class: "btn btn-xs btn-primary" %> 
+        
+        <% if article.author == current_user %>
     		<%= link_to 'Edit', edit_article_path(article), class: "btn btn-xs btn-primary" %> 
     		<%= link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-primary" %> 
+        <% end %>
+     
       </div>
     </div>
 	<% end %>
