@@ -15,3 +15,23 @@
 
 //= require jquery
 //= require bootstrap-sprockets
+
+//alert('koko')
+window.addEventListener("load", function() {
+ //  document.getElementById("q").value = "form javascript";
+
+ //  document.getElementById("q").addEventListener('keypress', function() {
+ //    console.log(this.value)
+ //  });
+
+ //  document.getElementById("q").addEventListener("mouseover", function() {
+ //   console.log("myszka")
+ // });
+
+    document.getElementById("add").addEventListener("click", function() {
+    var score = parseInt(document.getElementById('field1').value)+parseInt(document.getElementById('field2').value);
+    document.getElementById("wynik").innerHTML = score
+      
+  })
+
+});
