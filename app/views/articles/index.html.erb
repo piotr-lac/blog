@@ -30,6 +30,8 @@
     		<%= link_to 'Edit', edit_article_path(article), class: "btn btn-xs btn-primary" %> 
     		<%= link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-primary" %> 
         <% end %>
+
+        <%= link_to 'Summary', summary_article_path(article), class: "btn btn-xs btn-primary summary", id: "summary-#{article.id}" %> 
      
       </div>
     </div>

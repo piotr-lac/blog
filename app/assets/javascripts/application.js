@@ -44,7 +44,21 @@ window.addEventListener("load", function() {
     newElement.innerText = this.response.var2;
     document.body.appendChild(newElement);
   })
-  request.send()
+  request.send();
 
+  var elements = document.querySelectorAll('.summary');
+  for (var i = 0; i<elements.length; i++) {
+    elements[i].addEventListener("click", function(e) {
+    e.preventDefault();
+      var request = new XMLHttpRequest();
+      request.open("GET", this.href + ".json");
+      request.responseType = "json";
+      request.addEventListener("load", function() {
+        var summary = document.getElementById("summary-" + this.response.id)
+        summary.innerText = "Comments: " + this.response.comments + ". Likes: " + this.response.likes;
+        //alert("Comments : " + this.response.comments + "  Likes : " + this.response.likes);
+      });
+      request.send();
+    })
+  }
 });
-

@@ -6,6 +6,16 @@ class ArticlesController < ApplicationController
   def index
   	@articles = Article.includes(:author).order(id: :asc)
      @articles = @articles.where("? = any(tags)", params[:q]) if params[:q].present?
+     respond_to do |format|
+      format.json do
+        render json: @articles
+      end
+
+      format.html do
+        render
+      end
+    end
+  
   end
 
   def new
@@ -49,8 +59,9 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       format.json do
         render json: {
-          "likes": @article.likes.count,
-          "comments": @article.comments.count
+          id: @article.id,
+          likes: @article.likes.count,
+          comments: @article.comments.count
         }
       end
     end
