@@ -17,7 +17,8 @@
 //= require bootstrap-sprockets
 
 //alert('koko')
-window.addEventListener("load", function() {
+
+// window.addEventListener("load", function() {
  //  document.getElementById("q").value = "form javascript";
 
  //  document.getElementById("q").addEventListener('keypress', function() {
@@ -28,10 +29,22 @@ window.addEventListener("load", function() {
  //   console.log("myszka")
  // });
 
-    document.getElementById("add").addEventListener("click", function() {
-    var score = parseInt(document.getElementById('field1').value)+parseInt(document.getElementById('field2').value);
-    document.getElementById("wynik").innerHTML = score
-      
+    // document.getElementById("add").addEventListener("click", function() {
+    // var score = parseInt(document.getElementById('field1').value)+parseInt(document.getElementById('field2').value);
+    // document.getElementById("wynik").innerHTML = score
+    // })
+
+window.addEventListener("load", function() {
+  var request = new XMLHttpRequest()
+  request.open("GET", "http://localhost:3000/koko.txt")
+  request.responseType = 'json'
+  request.addEventListener("load", function () {
+    document.getElementById('q').value = this.response.message;
+    var newElement = document.createElement('h1');
+    newElement.innerText = this.response.var2;
+    document.body.appendChild(newElement);
   })
+  request.send()
 
 });
+
