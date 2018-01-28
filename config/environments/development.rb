@@ -7,7 +7,7 @@ Rails.application.configure do
   config.cache_classes = false
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :letter_opener
 
   ActionMailer::Base.smtp_settings = {
   :user_name => ENV["SENDGRID_USERNAME"],
