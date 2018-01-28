@@ -7,7 +7,9 @@ class CommentsController < ApplicationController
     @comment.attributes = comment_params
     if @comment.save
       session[:commenter] = @comment.commenter 
+
       UserMailer.article_commented(@article).deliver_now
+      
       redirect_to article_path(@comment.article_id)
     else
       @like = Like.find_or_initialize_by(article: @article, user: current_user)
