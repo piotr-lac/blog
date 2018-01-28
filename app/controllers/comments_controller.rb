@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     if @comment.save
       session[:commenter] = @comment.commenter 
 
-      UserMailer.article_commented(@article).deliver_now
+      UserMailer.article_commented(article_id).deliver_now
       
       redirect_to article_path(@comment.article_id)
     else
