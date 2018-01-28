@@ -38,6 +38,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'sidekiq'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -60,7 +61,7 @@ group :development do
   gem "letter_opener"
 
   gem "foreman", require: false
-  gem 'sidekiq'
+  
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
